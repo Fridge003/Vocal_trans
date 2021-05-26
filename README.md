@@ -1,2 +1,14 @@
-# vocal_trans
-AI_introduction: Vocal Transformation
+
+# AI_introduction Group ProjectVocal: Transformation
+
+## Code source: https://github.com/liusongxiang/StarGAN-Voice-Conversion
+
+## Dependencies:
+* Python==3.5-3.7
+* pyworld
+* tqdm
+* librosa==0.7.2
+* numba==0.48.0
+* tensorboard
+* tensorboardX
+
