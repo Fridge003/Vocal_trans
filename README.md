@@ -1,5 +1,5 @@
 
-# AI_introduction Group ProjectVocal: Transformation
+# AI_introduction Group Project: Vocal Transformation
 
 ## Code source: https://github.com/liusongxiang/StarGAN-Voice-Conversion
 
