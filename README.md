@@ -4,7 +4,7 @@
 ## Code source: https://github.com/liusongxiang/StarGAN-Voice-Conversion
 
 ## Dependencies:
-* Python==3.5-3.7
+* Python==3.5-3.6
 * pyworld
 * tqdm
 * librosa==0.7.2
