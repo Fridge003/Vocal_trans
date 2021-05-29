@@ -5,6 +5,7 @@
 
 ## Dependencies:
 * Python==3.5-3.6
+* Pytorch<=1.5.0
 * pyworld
 * tqdm
 * librosa==0.7.2
