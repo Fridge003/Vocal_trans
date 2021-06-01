@@ -31,7 +31,7 @@ class Generator(nn.Module):
 
         # Down-sampling layers.
         curr_dim = conv_dim
-        for i in range(2):
+        for i in range(1):
             layers.append(nn.Conv2d(curr_dim, curr_dim*2, kernel_size=(4, 8), stride=(2, 2), padding=(1, 3), bias=False))
             layers.append(nn.InstanceNorm2d(curr_dim*2, affine=True, track_running_stats=True))
             layers.append(nn.ReLU(inplace=True))
@@ -42,7 +42,7 @@ class Generator(nn.Module):
             layers.append(ResidualBlock(dim_in=curr_dim, dim_out=curr_dim))
 
         # Up-sampling layers.
-        for i in range(2):
+        for i in range(1):
             layers.append(nn.ConvTranspose2d(curr_dim, curr_dim//2, kernel_size=4, stride=2, padding=1, bias=False))
             layers.append(nn.InstanceNorm2d(curr_dim//2, affine=True, track_running_stats=True))
             layers.append(nn.ReLU(inplace=True))
@@ -69,7 +69,7 @@ class Generator(nn.Module):
 
 class Discriminator(nn.Module):
     """Discriminator network with PatchGAN."""
-    def __init__(self, input_size=(36, 256), conv_dim=64, repeat_num=5, num_speakers=10):
+    def __init__(self, input_size=(36, 256), conv_dim=64, repeat_num=3, num_speakers=10):
         super(Discriminator, self).__init__()
         layers = []
         layers.append(nn.Conv2d(1, conv_dim, kernel_size=4, stride=2, padding=1))
