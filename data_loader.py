@@ -22,7 +22,8 @@ min_length = 256  # Since we slice 256 frames from each utterance when training.
 
 # modified when using different dataset
 # speakers = ['p262', 'p272', 'p229', 'p232', 'p292', 'p293', 'p360', 'p361', 'p248', 'p251']
-speakers = ['p101', 'p102', 'p103', 'p104']
+# speakers = ['p101', 'p102', 'p103', 'p104']
+speakers = ['p001','p002','p003','p004','p005']
 spk2idx = dict(zip(speakers, range(len(speakers))))
 
 
@@ -101,7 +102,7 @@ class MyDataset(data.Dataset):
 class TestDataset(object):
     """Dataset for testing."""
 
-    def __init__(self, data_dir, wav_dir, src_spk='p262', trg_spk='p272'):
+    def __init__(self, data_dir, wav_dir, src_spk='p001', trg_spk='p002'):
         self.src_spk = src_spk
         self.trg_spk = trg_spk
         self.mc_files = sorted(glob.glob(join(data_dir, '{}*.npy'.format(self.src_spk))))
@@ -143,7 +144,7 @@ def get_loader(data_dir, batch_size=32, mode='train', num_workers=1):
 
 
 if __name__ == '__main__':
-    loader = get_loader('./data/mc/train')
+    loader = get_loader('../data/mc/train')
     data_iter = iter(loader)
     for i in range(10):
         mc, spk_idx, acc_idx, spk_acc_cat = next(data_iter)

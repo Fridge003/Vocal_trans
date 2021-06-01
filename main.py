@@ -27,7 +27,7 @@ def main(config):
     train_loader = get_loader(config.train_data_dir, config.batch_size, 'train', num_workers=config.num_workers)
     # modified when using different dataset
     # test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='p262', trg_spk='p272')
-    test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='p101', trg_spk='p102')
+    test_loader = TestDataset(config.test_data_dir, config.wav_dir, src_spk='p001', trg_spk='p002')
 
     # Solver for training and testing StarGAN.
     solver = Solver(train_loader, test_loader, config)
@@ -43,10 +43,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     # Model configuration.
-    parser.add_argument('--num_speakers', type=int, default=4, help='dimension of speaker labels')  # might be modified
-    parser.add_argument('--lambda_cls', type=float, default=10, help='weight for domain classification loss')
-    parser.add_argument('--lambda_rec', type=float, default=10, help='weight for reconstruction loss')
-    parser.add_argument('--lambda_gp', type=float, default=10, help='weight for gradient penalty')
+    # Hyperparameters might be modified.
+    parser.add_argument('--num_speakers', type=int, default=5, help='dimension of speaker labels')  # might be modified
+    parser.add_argument('--lambda_cls', type=float, default=5, help='weight for domain classification loss')
+    parser.add_argument('--lambda_rec', type=float, default=7, help='weight for reconstruction loss')
+    parser.add_argument('--lambda_gp', type=float, default=5, help='weight for gradient penalty')
     parser.add_argument('--sampling_rate', type=int, default=16000, help='sampling rate')
 
     # Training configuration. default iter_num & learning_rate modified to shorten training time.
@@ -71,18 +72,18 @@ if __name__ == '__main__':
     parser.add_argument('--use_tensorboard', type=str2bool, default=True)
 
     # Directories.
-    parser.add_argument('--train_data_dir', type=str, default='./data/mc/train')
-    parser.add_argument('--test_data_dir', type=str, default='./data/mc/test')
-    parser.add_argument('--wav_dir', type=str, default="./data/chinese_wav16")
-    parser.add_argument('--log_dir', type=str, default='./logs')
-    parser.add_argument('--model_save_dir', type=str, default='./models')
-    parser.add_argument('--sample_dir', type=str, default='./samples')
+    parser.add_argument('--train_data_dir', type=str, default='../data/mc/train')
+    parser.add_argument('--test_data_dir', type=str, default='../data/mc/test')
+    parser.add_argument('--wav_dir', type=str, default="../data/chinese_wav16")
+    parser.add_argument('--log_dir', type=str, default='../logs')
+    parser.add_argument('--model_save_dir', type=str, default='../models')
+    parser.add_argument('--sample_dir', type=str, default='../samples')
 
     # Step size. model_save_dir/sample_dir may be modified
-    parser.add_argument('--log_step', type=int, default=10)
-    parser.add_argument('--sample_step', type=int, default=200)  # 2000
-    parser.add_argument('--model_save_step', type=int, default=200)  # 2000
-    parser.add_argument('--lr_update_step', type=int, default=200)  # 2000
+    parser.add_argument('--log_step', type=int, default=100)
+    parser.add_argument('--sample_step', type=int, default=4000)  # 2000
+    parser.add_argument('--model_save_step', type=int, default=2000)  # 2000
+    parser.add_argument('--lr_update_step', type=int, default=2000)  # 2000
 
     config = parser.parse_args()
     print(config)

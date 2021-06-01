@@ -84,9 +84,9 @@ if __name__ == '__main__':
 
     sample_rate_default = 16000
     origin_wavpath_default = "./data/VCTK-Corpus/wav48"
-    target_wavpath_default = "./data/chinese_wav16"
-    mc_dir_train_default = './data/mc/train'
-    mc_dir_test_default = './data/mc/test'
+    target_wavpath_default = "../data/chinese_wav16"
+    mc_dir_train_default = '../data/mc/train'
+    mc_dir_test_default = '../data/mc/test'
 
     parser.add_argument("--sample_rate", type=int, default=16000, help="Sample rate.")
     parser.add_argument("--origin_wavpath", type=str, default=origin_wavpath_default,

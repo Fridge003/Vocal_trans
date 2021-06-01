@@ -30,7 +30,8 @@ spk2acc = {'262': 'Edinburgh',  # F
 
 # 更换数据集时需要更改speakers列表
 # speakers = ['p262', 'p272', 'p229', 'p232', 'p292', 'p293', 'p360', 'p361', 'p248', 'p251']
-speakers = ['p101', 'p102', 'p103', 'p104']
+# speakers = ['p101', 'p102', 'p103', 'p104']
+speakers = ['p001','p002','p003','p004','p005']
 spk2idx = dict(zip(speakers, range(len(speakers))))
 
 
@@ -80,7 +81,7 @@ def load_wav(wavfile, sr=16000):
 
 class config_api:
 
-    def __init__(self, file_path, trg_spk, save_path, src_spk='p001', resume_iters=20000, num_converted_wavs=4):
+    def __init__(self, file_path, trg_spk, save_path, src_spk='p000', resume_iters=20000, num_converted_wavs=4):
         """Initialize configurations."""
 
         self.num_speakers = len(speakers)
@@ -88,11 +89,11 @@ class config_api:
         self.resume_iters = resume_iters
         self.src_spk = src_spk
         self.trg_spk = trg_spk
-        self.train_data_dir = './data/mc/train'
-        self.test_data_dir = './data/mc/test'
+        self.train_data_dir = '../data/mc/train'
+        self.test_data_dir = '../data/mc/test'
         self.wav_dir = file_path
-        self.log_dir = './logs'
-        self.model_save_dir = './models'
+        self.log_dir = '../logs'
+        self.model_save_dir = '../models'
         self.convert_dir = save_path
 
 
@@ -155,20 +156,20 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     # Model configuration.
-    parser.add_argument('--num_speakers', type=int, default=4,
+    parser.add_argument('--num_speakers', type=int, default=5,
                         help='dimension of speaker labels')  # default value might be modified
     parser.add_argument('--num_converted_wavs', type=int, default=4, help='number of wavs to convert.')
     parser.add_argument('--resume_iters', type=int, default=None, help='step to resume for testing.')
-    parser.add_argument('--src_spk', type=str, default='p262', help='target speaker.')
-    parser.add_argument('--trg_spk', type=str, default='p272', help='target speaker.')
+    parser.add_argument('--src_spk', type=str, default='p001', help='target speaker.')
+    parser.add_argument('--trg_spk', type=str, default='p002', help='target speaker.')
 
     # Directories.
-    parser.add_argument('--train_data_dir', type=str, default='./data/mc/train')
-    parser.add_argument('--test_data_dir', type=str, default='./data/mc/test')
-    parser.add_argument('--wav_dir', type=str, default="./data/chinese_wav16")
-    parser.add_argument('--log_dir', type=str, default='./logs')
-    parser.add_argument('--model_save_dir', type=str, default='./models')
-    parser.add_argument('--convert_dir', type=str, default='./converted')
+    parser.add_argument('--train_data_dir', type=str, default='../data/mc/train')
+    parser.add_argument('--test_data_dir', type=str, default='../data/mc/test')
+    parser.add_argument('--wav_dir', type=str, default="../data/chinese_wav16")
+    parser.add_argument('--log_dir', type=str, default='../logs')
+    parser.add_argument('--model_save_dir', type=str, default='../models')
+    parser.add_argument('--convert_dir', type=str, default='../converted')
 
     config = parser.parse_args()
 
